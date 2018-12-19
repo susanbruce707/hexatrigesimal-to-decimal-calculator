@@ -1,94 +1,80 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Dec 12 17:34:24 2018
+Created on Wed Dec 19 09:41:08 2018
 hexatrigesimal to decimal calculator,
 base 36 encoding; use of letters with digits.
 @author: susan
 """
-## create a dictionary as reference for base 36 calculations
-word ="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ" # digits of base 36
-temp ={}
-base ={}
-for item in range(len(word)): # iterate through word 
-    a=word[item] # create key
-    b=item # create key value
-    temp={a:b} # create temp dictionary of key value pair
-    base.update(temp) # update base dictionary
-# input base 36 numbers for calculations        
+## create a dictionary as reference for BASE 36 calculations
+WORD = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ" # digits of BASE 36
+TEMP = {}
+BASE = {}
+for item in range(len(WORD)): # iterate through WORD
+    a = WORD[item] # create key
+    b = item # create key value
+    TEMP = {a:b} # create TEMP dictionary of key value pair
+    BASE.update(TEMP) # update BASE dictionary
+# input BASE 36 numbers for calculations
 def enter_num():
-    """ get user input and send for error checking to error_chk().
+    """ get user input and do error checking for ilegal digits.
     returns
     -------
     num
     """
-    num = error_check()
-    if "ilegal" in num:
-        print(" **error** user input failed\n")
-        print("do you want to re enter number")
-        ans= input("y or n ")
-        ans=ans.upper()
-        if ans=="Y":
-            num = error_check()
-            return num        
-    else:
-        return num
-# error check user input for ilegal digits
-def error_check():
-    """# convert num to upper case and check for digits not in word.
-    if user entry ilegal; user offered second try.
+    num = input("please enter a BASE 36 number, e.g. A36Z :> ")
+    num = num.upper()
+    for digit in num:
+        digit = digit.upper()
+        if digit not in WORD:
+            print(" **error** user input failed\n")
+            print("do you want to re enter number")
+            ans = input("y or n ")
+            ans = ans.upper()
+            if ans == "Y":
+                num = enter_num()
+            else:
+                num = None
+    return num
+def mk_num_lst(num):
+    """ make BASE 36 number from user into a list.
+    reverse list so digit are read left to right.
     returns
     -------
-    chk  
+    num_lst
     """
-    num = input("please enter a base 36 number, e.g. A36Z :> ")
-    chk=""
+    num_lst = []
     for digit in num:
-        digit=digit.upper()        
-        if digit in word:
-            chk += digit
-        else:            
-            chk += "*"
-    if "*" in chk:
-        return "ilegal"
-    else:
-        return chk
+        num_lst.append(digit)
+    num_lst.reverse()
+    return num_lst
 
-def mk_lst(num):
-    """ make base 36 number from user into a list.
-    returns
-    -------
-    lst
-    """
-    lst=[]
-    for digit in num:
-        lst.append(digit)
-    return lst
-
-def convert(x):
+def convert(num_lst):
     """ convert each digit to power of 36 appropriately.
     prints result in decimal.
     returns
     -------
     dec
     """
-    dec=0
-    for i in range(0,len(x)):
-        print("position right to left is-", i+1,
-              "value is ", base[(x[i])],
+    dec = 0
+    for i in range(0, len(num_lst)):
+        print("position right to left is >", i+1,
+              "value is ", BASE[(num_lst[i])],
               "decimal value is",
-              (36**i)* base[(x[i])])
-        dec+=(36**i)* base[(x[i])]   
+              (36**i) * BASE[(num_lst[i])])
+        dec += (36**i) * BASE[(num_lst[i])]
     return dec
 #
-def main():    
+def main():
+    """
+    process valid user input or
+    terminate program on failed input.
+    """
     num = enter_num()
-    if num != None:
-        x = mk_lst(num)
-        x.reverse() # reverse list so digit are read left to right.
-        dec=convert(x)
-        print("decimal value of base 36 number", num, "is", dec)
+    if num is not None:
+        num_lst = mk_num_lst(num)
+        dec = convert(num_lst)
+        print("decimal value of BASE 36 number", num, "is", dec)
     else:
         print("user terminated program")
 main()
-
 
