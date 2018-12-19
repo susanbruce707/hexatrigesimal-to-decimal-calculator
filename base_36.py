@@ -14,7 +14,7 @@ for item in range(len(WORD)): # iterate through WORD
     b = item # create key value
     TEMP = {a:b} # create TEMP dictionary of key value pair
     BASE.update(TEMP) # update BASE dictionary
-# input BASE 36 numbers for calculations
+# input function, BASE 36 numbers for calculations.
 def enter_num():
     """ get user input and do error checking for ilegal digits.
     returns
@@ -35,6 +35,7 @@ def enter_num():
             else:
                 num = None
     return num
+# make list function.
 def mk_num_lst(num):
     """ make BASE 36 number from user into a list.
     reverse list so digit are read left to right.
@@ -47,7 +48,7 @@ def mk_num_lst(num):
         num_lst.append(digit)
     num_lst.reverse()
     return num_lst
-
+# convert function.
 def convert(num_lst):
     """ convert each digit to power of 36 appropriately.
     prints result in decimal.
@@ -63,7 +64,7 @@ def convert(num_lst):
               (36**i) * BASE[(num_lst[i])])
         dec += (36**i) * BASE[(num_lst[i])]
     return dec
-#
+# main program flow function.
 def main():
     """
     process valid user input or
@@ -76,5 +77,5 @@ def main():
         print("decimal value of BASE 36 number", num, "is", dec)
     else:
         print("user terminated program")
+# program start.
 main()
-
