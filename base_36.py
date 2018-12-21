@@ -7,13 +7,9 @@ base 36 encoding; use of letters with digits.
 """
 ## create a dictionary as reference for BASE 36 calculations
 WORD = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ" # digits of BASE 36
-TEMP = {}
 BASE = {}
-for item in range(len(WORD)): # iterate through WORD
-    a = WORD[item] # create key
-    b = item # create key value
-    TEMP = {a:b} # create TEMP dictionary of key value pair
-    BASE.update(TEMP) # update BASE dictionary
+for i, item in enumerate(WORD): # iterate through word
+    BASE.update({WORD[i]:i}) # update BASE dictionary with key:value pair
 # input function, BASE 36 numbers for calculations.
 def enter_num():
     """ get user input and do error checking for ilegal digits.
