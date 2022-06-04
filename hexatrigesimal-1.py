@@ -26,7 +26,7 @@ def main():
     """
     menu()
     enter_select()
-# display funtion, display menu.
+# display function, display menu.
 def menu():
     """print a menu.
     """
@@ -37,14 +37,14 @@ def menu():
         2 convert decimal to base 36 number.
         """
         )
-# input funtion, enter menu selection.
+# input function, enter menu selection.
 def enter_select():
     choice = None
     select = ('0', '1', '2')
     while choice not in select:
         choice = input('Select option >')
         if choice not in select:
-            print('unvalid selection made')
+            print('invalid selection made')
             choice = None
     if choice == '1':
         base36_num = enter_b36()
@@ -79,7 +79,7 @@ def enter_dec():
     
 # input function, BASE 36 numbers for calculations.
 def enter_b36():
-    """ get user input and do error checking for ilegal digits.
+    """ get user input and do error checking for illegal digits.
     returns
     -------
     num
@@ -113,7 +113,7 @@ def convert(base36_num):
         print("Decimal value of >", base36_lst[i], "is", dec)
         base36_lst[i] = dec
     print("Sum of decimal values >", sum(base36_lst))
-# convert funtion, decimal to base 36.
+# convert function, decimal to base 36.
 def dec_to_base36(dec_num):
     """
     converts decimal dec to base36 number.
