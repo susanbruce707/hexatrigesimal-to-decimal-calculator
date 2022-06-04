@@ -12,7 +12,7 @@ for i, item in enumerate(WORD): # iterate through word
     BASE.update({WORD[i]:i}) # update BASE dictionary with key:value pair
 # input function, BASE 36 numbers for calculations.
 def enter_num():
-    """ get user input and do error checking for ilegal digits.
+    """ get user input and do error checking for illegal digits.
     returns
     -------
     num
